@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance - Student Attendance Management System</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Attendance Section */
+        .attendance-section {
+            padding: 20px;
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .attendance-section h1 {
+            font-size: 2.5rem;
+            color: #0078D7;
+            margin-bottom: 20px;
+        }
+
+        .attendance-section p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        /* Form Styling */
+        .attendance-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input[type="date"] {
+            padding: 10px 15px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Table Styling */
+        .attendance-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+
+        .attendance-table th,
+        .attendance-table td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .attendance-table th {
+            background-color: #0078D7;
+            color: white;
+            font-weight: bold;
+        }
+
+        .attendance-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .attendance-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* No Students Message */
+        .no-students {
+            font-size: 1.2rem;
+            color: #f44336;
+            margin-top: 20px;
+        }
+
+        /* Submit Button */
+        .btn-submit {
+            background-color: #0078D7;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            background-color: #005bb5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .attendance-section {
+                padding: 15px;
+            }
+
+            .form-group {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .attendance-table th,
+            .attendance-table td {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+
+            .attendance-table {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('partials/nav') %>
+
+    <main class="attendance-section">
+        <h1><i class="fas fa-clipboard-list"></i> Take Attendance</h1>
+        <p>Select the date and mark attendance for your students below:</p>
+        <form action="/attendence" method="POST" class="attendance-form">
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <% if (data.length > 0) { %>
+            <table class="attendance-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Roll</th>
+                        <th>Present</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach((student) => { %>
+                    <tr>
+                        <td><%= student.sname %></td>
+                        <td><%= student.roll %></td>
+                        <td>
+                            <input type="checkbox" name="attendance" value="<%= student.roll %>">
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <% } else { %>
+            <p class="no-students"><i class="fas fa-exclamation-circle"></i> No students available</p>
+            <% } %>
+
+            <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Submit Attendance</button>
+        </form>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+
+</html>

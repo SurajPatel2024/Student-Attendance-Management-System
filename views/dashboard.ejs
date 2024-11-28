@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Student Attendance Management System</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/a.css">
+</head>
+<body>
+    <%- include('partials/nav') %>
+
+    <main>
+        <section>
+            <h2>Dashboard</h2>
+            <p>Welcome to the Dashboard! You can manage students, attendance, and more here.</p>
+        </section>
+
+        <div class="card-container">
+             
+        
+           
+       
+            <a href="/add" class="card">
+                <i class="fas fa-user-plus"></i>
+                <p>Add Students</p>
+            </a>
+            <a href="/totel" class="card">
+                <i class="fas fa-users"></i>
+                <p>View Total Students</p>
+            </a>
+            <a href="/attendence" class="card">
+                <i class="fas fa-calendar-check"></i>
+                <p>Attendance</p>
+            </a>
+            <a href="/view-attendance" class="card">
+                <i class="fas fa-eye"></i>
+                <p>View Attendance</p>
+            
+            <a href="/logout" class="card">
+                <i class="fas fa-sign-out-alt"></i>
+                <p>Logout</p>
+            </a>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>
