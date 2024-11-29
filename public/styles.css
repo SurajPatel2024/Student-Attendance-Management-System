@@ -186,17 +186,17 @@ footer p {
         display: block; /* Show menu button on small screens */
         position: fixed; /* Fixed position */
         top: 70px; /* Adjust as needed */
-        left: 20px; /* Adjust as needed */
+        right: 20px; /* Adjust as needed */
         font-size: 1.5rem; /* Font size for the icon */
         background-color: #0078D7; /* Sidebar background color */
-       
+       background-color: transparent;
         color: white; /* Icon color */
         padding: 10px;
         border: none;
         margin-top: 2px;
         border-radius: 5%; /* Circular button */
         cursor: pointer;
-        z-index: 1100; /* Above sidebar */
+        z-index: 999; /* Above sidebar */
     }
 
     .menu-toggle:focus {
